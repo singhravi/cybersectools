@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Investigation Tools for Cyber Fraud Analysis</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 2.5rem; color: #1e40af; margin-bottom: 15px; }
+        .header p { font-size: 1.1rem; color: #555; margin-bottom: 20px; }
+        .legal-notice {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #92400e;
+        }
+        .tool-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .tool-header {
+            padding: 25px;
+            cursor: pointer;
+            border-left: 4px solid #2563eb;
+            transition: background 0.3s;
+        }
+        .tool-header:hover { background: #eff6ff; }
+        .tool-title { font-size: 1.8rem; font-weight: bold; color: #1f2937; margin-bottom: 5px; }
+        .tool-description { color: #6b7280; font-size: 0.95rem; }
+        .tool-content {
+            display: none;
+            padding: 25px;
+            border-top: 1px solid #e5e7eb;
+        }
+        .tool-content.active { display: block; }
+        .section { margin: 25px 0; padding: 20px; background: #f9fafb; border-left: 4px solid #10b981; border-radius: 8px; }
+        .section h3 { color: #1f2937; margin-bottom: 15px; font-size: 1.3rem; }
+        .step { margin: 15px 0; }
+        .step-title { font-weight: bold; color: #1e40af; margin-bottom: 8px; }
+        .box {
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+        .box-blue { background: #eff6ff; border-left: 3px solid #3b82f6; }
+        .box-green { background: #f0fdf4; border-left: 3px solid #10b981; }
+        .box-yellow { background: #fefce8; border-left: 3px solid #eab308; }
+        .box-red { background: #fef2f2; border-left: 3px solid #ef4444; }
+        .command {
+            background: #1f2937;
+            color: #10b981;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        ul, ol { margin-left: 20px; margin-top: 8px; }
+        li { margin: 5px 0; }
+        .summary {
+            background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-top: 40px;
+        }
+        .summary h2 { font-size: 1.8rem; margin-bottom: 20px; }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .tool-content { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 Free Cyber Fraud Investigation Tools Guide</h1>
+            <p>Comprehensive guide for cyber fraud investigation and social engineering analysis</p>
+          <p>Developed By: Ravi Shankar Singh, Head State e-Governance Mission Team, Uttarakhand</p>
+            <div class="legal-notice">
+                <strong>⚖️ Legal Notice:</strong> Use these tools for legitimate investigation, security research, and educational purposes only. Comply with applicable laws regarding privacy and data protection.
+            </div>
+        </div>
+
+        <!-- BROWSER TOOLS -->
+        <div class="tool-section">
+            <div class="tool-header" onclick="toggleTool('browser')">
+                <div class="tool-title">🌐 Web Browser (Chrome/Firefox/Edge)</div>
+                <div class="tool-description">Built-in developer tools for analyzing websites and investigating phishing</div>
+            </div>
+            <div class="tool-content" id="browser">
+                
+                <div class="section">
+                    <h3>📌 Investigating Phishing Websites</h3>
+                    
+                    <div class="step">
+                        <div class="step-title">Step 1: Inspect URL Without Clicking</div>
+                        <p>Hover over suspicious links to preview destination URL in bottom-left corner.</p>
+                        <div class="box box-green"><strong>Example:</strong> Email shows "www.sbi.co.in" but hovering reveals "sbi-secure-login.tk"</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Step 2: Check SSL Certificate</div>
+                        <p>Click padlock icon in address bar to view certificate details.</p>
+                        <div class="box box-green"><strong>Example:</strong> Legitimate SBI has certificate issued to "State Bank of India". Fake shows "Domain Privacy Service"</div>
+                        <div class="box box-red"><strong>Warning:</strong> HTTPS doesn't guarantee legitimacy - fraudsters can get SSL certificates</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Step 3: Analyze Domain Name</div>
+                        <p>Look for typosquatting, extra words, unusual TLDs (.tk, .ml, .ga)</p>
+                        <div class="box box-green"><strong>Examples:</strong> Legitimate: amazon.com | Fraudulent: amazom.com, amazon-india.tk</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Step 4: Use Developer Tools (F12)</div>
+                        <p>Right-click → Inspect or press F12</p>
+                        <div class="box box-blue">
+                            <ul>
+                                <li><strong>Network tab:</strong> See all server requests and data transmission</li>
+                                <li><strong>Console tab:</strong> Check for JavaScript errors or suspicious scripts</li>
+                                <li><strong>Sources tab:</strong> View loaded scripts and identify malicious code</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Step 5: Check Website Reputation</div>
+                        <div class="box box-blue">
+                            <strong>Recommended Tools:</strong>
+                            <ul>
+                                <li>VirusTotal (virustotal.com) - Scan URL with 70+ security engines</li>
+                                <li>URLVoid (urlvoid.com) - Check domain reputation</li>
+                                <li>Whois (whois.com) - Domain registration info</li>
+                                <li>Google Safe Browsing - Check if site is flagged</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>📌 Verifying Social Media & Profile Images</h3>
+                    
+                    <div class="step">
+                        <div class="step-title">Google Reverse Image Search</div>
+                        <p>Right-click image → "Search image with Google" OR visit images.google.com → camera icon</p>
+                        <div class="box box-green"><strong>Example:</strong> Profile claims "Dr. Rahul Sharma from Delhi" but image belongs to US model</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">TinEye Alternative</div>
+                        <p>Visit tineye.com and upload image - shows oldest version with timestamps</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Check Profile History</div>
+                        <div class="box box-blue">
+                            <ul>
+                                <li>Facebook: About → Contact Info → Join date</li>
+                                <li>LinkedIn: Scroll to "Member since" date</li>
+                            </ul>
+                        </div>
+                        <div class="box box-red"><strong>Red Flag:</strong> Account under 90 days old, minimal posts, few connections</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- THUNDERBIRD -->
+        <div class="tool-section">
+            <div class="tool-header" onclick="toggleTool('thunderbird')">
+                <div class="tool-title">📧 Mozilla Thunderbird Email Client</div>
+                <div class="tool-description">Analyze email headers, track sources, identify phishing</div>
+            </div>
+            <div class="tool-content" id="thunderbird">
+                
+                <div class="section">
+                    <h3>📌 Analyzing Email Headers to Trace Origin</h3>
+                    
+                    <div class="step">
+                        <div class="step-title">Step 1: Install & Setup</div>
+                        <p>Download from thunderbird.net → Add your email account</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Step 2: View Email Headers</div>
+                        <p>Open email → More (three dots) → "View Source" or Ctrl+U</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Step 3: Analyze Critical Headers</div>
+                        <div class="box box-blue">
+                            <strong>Key Fields:</strong>
+                            <ul>
+                                <li><strong>From:</strong> Display email (easily spoofed)</li>
+                                <li><strong>Return-Path:</strong> Actual reply address (harder to fake)</li>
+                                <li><strong>Received:</strong> Complete email path (read bottom to top)</li>
+                                <li><strong>SPF/DKIM/DMARC:</strong> Authentication results</li>
+                                <li><strong>X-Originating-IP:</strong> Sender's IP address</li>
+                            </ul>
+                        </div>
+                        <div class="box box-green"><strong>Example:</strong> From shows "noreply@sbi.co.in" but Return-Path is "scammer123@gmail.com"</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Step 4: Trace IP Addresses</div>
+                        <p>Extract IPs from Received headers → Use whatismyipaddress.com/ip-lookup</p>
+                        <div class="box box-green"><strong>Example:</strong> Email claims "HDFC Mumbai" but IP traces to Nigeria</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Step 5: Verify Authentication</div>
+                        <div class="box box-blue">
+                            <strong>Interpretation:</strong>
+                            <ul>
+                                <li>✓ SPF Pass + DKIM Pass + DMARC Pass = Legitimate</li>
+                                <li>✗ Any "fail" = High probability of spoofing</li>
+                                <li>? Missing authentication = Suspicious</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>📌 Safely Analyzing Email Attachments</h3>
+                    
+                    <div class="step">
+                        <div class="step-title">Never Open Suspicious Attachments</div>
+                        <div class="box box-red"><strong>Warning:</strong> Can install ransomware, keyloggers, malware</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Scan with VirusTotal</div>
+                        <p>Save attachment → Upload to virustotal.com for 70+ antivirus scans</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Check File Extension</div>
+                        <div class="box box-red">
+                            <strong>Dangerous:</strong> .exe, .scr, .bat, .js, .vbs, .zip (password-protected), invoice.pdf.exe
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- EXIFTOOL -->
+        <div class="tool-section">
+            <div class="tool-header" onclick="toggleTool('exiftool')">
+                <div class="tool-title">🖼️ ExifTool - Metadata Analyzer</div>
+                <div class="tool-description">Extract metadata from images, videos, and documents</div>
+            </div>
+            <div class="tool-content" id="exiftool">
+                
+                <div class="section">
+                    <h3>📌 Extracting Image Metadata</h3>
+                    
+                    <div class="step">
+                        <div class="step-title">Installation</div>
+                        <div class="box box-blue">
+                            <strong>Windows:</strong> Download from exiftool.org → Extract to folder<br>
+                            <strong>Mac:</strong> brew install exiftool<br>
+                            <strong>Linux:</strong> sudo apt-get install libimage-exiftool-perl
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Basic Extraction</div>
+                        <div class="command">exiftool image.jpg</div>
+                        <p>Shows: Camera model, GPS coordinates, date/time, software used, author</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Verify Image Authenticity</div>
+                        <div class="command">exiftool -a -G1 suspicious_image.jpg</div>
+                        <div class="box box-green"><strong>Example:</strong> Scammer claims "photo taken today" but EXIF shows "Create Date: 2019:05:15, Software: Photoshop"</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Extract GPS Location</div>
+                        <div class="command">exiftool -gps:all image.jpg</div>
+                        <div class="box box-green"><strong>Example:</strong> Romance scammer claims "London UK" but GPS shows Lagos, Nigeria (6.5244, 3.3792)</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Batch Process Multiple Images</div>
+                        <div class="command">exiftool -r -csv -n folder_name > report.csv</div>
+                        <p>Analyze all images in folder, export as CSV</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Remove Metadata (Privacy)</div>
+                        <div class="command">exiftool -all= image.jpg</div>
+                        <p>Strip all metadata before sharing (creates backup automatically)</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>📌 Analyzing Document Metadata</h3>
+                    
+                    <div class="step">
+                        <div class="step-title">Extract PDF Metadata</div>
+                        <div class="command">exiftool document.pdf</div>
+                        <div class="box box-blue">
+                            <strong>Shows:</strong> Author, Creator software, Producer, Create Date, Modify Date
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Detect Forged Documents</div>
+                        <div class="box box-green"><strong>Example:</strong> Fake bank statement claims "HDFC Bank" but Author: "Raj Kumar", Creator: "Microsoft Word" (banks use specialized software)</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- AUDACITY -->
+        <div class="tool-section">
+            <div class="tool-header" onclick="toggleTool('audacity')">
+                <div class="tool-title">🎧 Audacity - Audio Analysis Tool</div>
+                <div class="tool-description">Analyze voice recordings, detect manipulation</div>
+            </div>
+            <div class="tool-content" id="audacity">
+                
+                <div class="section">
+                    <h3>📌 Analyzing Vishing Call Recordings</h3>
+                    
+                    <div class="step">
+                        <div class="step-title">Installation</div>
+                        <p>Download from audacityteam.org (free, open-source)</p>
+                        <div class="box box-red"><strong>Legal Notice:</strong> Recording calls may be illegal in some jurisdictions. In India, one-party consent is generally acceptable.</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Import Recording</div>
+                        <p>File → Open → Select recording (MP3, WAV, M4A, etc.)</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Enhance Audio Quality</div>
+                        <div class="box box-blue">
+                            <strong>Noise Reduction:</strong><br>
+                            1. Select portion with only noise<br>
+                            2. Effect → Noise Reduction → Get Noise Profile<br>
+                            3. Select all (Ctrl+A)<br>
+                            4. Effect → Noise Reduction → Apply
+                        </div>
+                        <div class="box box-blue">
+                            <strong>Amplify Weak Audio:</strong><br>
+                            Select all → Effect → Amplify → OK
+                        </div>
+                        <div class="box box-blue">
+                            <strong>Normalize Volume:</strong><br>
+                            Select all → Effect → Normalize → Set to -1.0 dB
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Detect Voice Manipulation</div>
+                        <div class="box box-blue">
+                            <strong>Spectrogram Analysis:</strong><br>
+                            Track dropdown → Spectrogram → Look for unnatural frequency patterns<br>
+                            Voice changers show distinctive artifacts, horizontal lines, robotic patterns
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Extract Key Segments</div>
+                        <p>Select important part → File → Export → Export Selected Audio</p>
+                        <p>Add labels: Edit → Labels → Add Label at Selection</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Analyze Background Sounds</div>
+                        <div class="box box-blue">
+                            <strong>Clues:</strong> Call center noise, traffic (urban), animals (rural), accent patterns
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>📌 Detecting Audio Tampering</h3>
+                    
+                    <div class="step">
+                        <div class="step-title">Visual Waveform Inspection</div>
+                        <p>Look for: Abrupt amplitude changes, unnatural silence gaps, discontinuities, click/pop sounds</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Spectral Analysis</div>
+                        <p>Track dropdown → Spectrogram → Look for vertical lines (cuts/splices), frequency pattern changes</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>📌 Creating Transcriptions for Evidence</h3>
+                    
+                    <div class="step">
+                        <div class="step-title">Slow Down Playback</div>
+                        <p>Effect → Change Tempo (without pitch change) → Reduce 10-30%</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Add Timestamps</div>
+                        <p>At key moments → Edit → Labels → Add Label → Type description</p>
+                        <p>Export labels: File → Export → Export Labels</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-title">Export Enhanced Version</div>
+                        <p>File → Export → Export as WAV (highest quality)</p>
+                        <div class="box box-red"><strong>Important:</strong> Always keep original unedited recording. Enhanced version is supplementary only.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="summary">
+            <h2>📋 Quick Reference Summary</h2>
+            <div class="summary-grid">
+                <div>
+                    <h3>🌐 Browser Tools For:</h3>
+                    <ul>
+                        <li>Phishing website detection</li>
+                        <li>URL & SSL verification</li>
+                        <li>Reverse image search</li>
+                        <li>Network traffic analysis</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>📧 Thunderbird For:</h3>
+                    <ul>
+                        <li>Email header analysis</li>
+                        <li>Sender verification</li>
+                        <li>IP address tracing</li>
+                        <li>Attachment inspection</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🖼️ ExifTool For:</h3>
+                    <ul>
+                        <li>Image metadata extraction</li>
+                        <li>GPS location verification</li>
+                        <li>Document forensics</li>
+                        <li>Timestamp analysis</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🎧 Audacity For:</h3>
+                    <ul>
+                        <li>Call recording analysis</li>
+                        <li>Voice manipulation detection</li>
+                        <li>Audio enhancement</li>
+                        <li>Evidence transcription</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleTool(toolId) {
+            const content = document.getElementById(toolId);
+            const isActive = content.classList.contains('active');
+            
+            // Close all other tools
+            document.querySelectorAll('.tool-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Toggle current tool
+            if (!isActive) {
+                content.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
